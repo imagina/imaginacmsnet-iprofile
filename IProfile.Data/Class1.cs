@@ -1,4 +1,5 @@
 ﻿using BaseRepository;
+using IProfile.Data.Entities;
 
 namespace IProfile.Data
 {
@@ -6,7 +7,11 @@ namespace IProfile.Data
     {
         public string invokeParent()
         {
-            return base.ParentMethod();
+            
+            using(IprofileContext db = new IprofileContext())
+            {
+                return db.AspNetUsers.FirstOrDefault().Email;
+            }
         }
     }
 }
